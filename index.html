@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clamp Calculator</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <main class="slope-calc-background-container">
+        <section class="slope-calc">
+            <h1 class="slope-calc__heading">Clamp Calculator</h1>
+             <div class="slope-calc__inplab-wrap">
+                <label class="slope-calc__label" for="min-width">Min px Width</label>
+                <input class="slope-calc__input" type="number" id="min-width" placeholder="Enter the minimum pixels"/>
+            </div>
+            <div class="slope-calc__inplab-wrap">
+                <label class="slope-calc__label" for="max-width">Max px Width</label>
+                <input class="slope-calc__input" type="number" id="max-width" placeholder="Enter the maximum pixels"/>
+            </div>
+            <div class="slope-calc__inplab-wrap">
+                <label class="slope-calc__label" for="min-vp">Min VP Width:</label>
+                <input class="slope-calc__input" type="number" id="min-vp" placeholder="Enter the minimum viewport"/>
+            </div>
+            <div class="slope-calc__inplab-wrap">
+                <label class="slope-calc__label" for="max-vp">Max VP Width</label>
+                <input class="slope-calc__input" type="number" id="max-vp" placeholder="Enter the maximum viewport"/>
+            </div>
+            <button class="slope-calc__calculate">Generate Clamp</button>
+            <div class="slope-calc__output">
+                <p class="slope-calc__result"></p>
+            </div>
+            <button class="slope-calc__copy">Copy to clipboard</button>
+        </section>
+    </main>
+</body>
+</html>
