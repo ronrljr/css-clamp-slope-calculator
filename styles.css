@@ -18,7 +18,7 @@ html {
 }
 
 .slope-calc {
-    width: 40rem;
+    width: 55rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,6 +51,10 @@ html {
     font-weight: 500;
 }
 
+.slope-calc__input--root {
+    width: 5rem;
+}
+
 .slope-calc__output {
     width: 100%;
     height: 8rem;
@@ -72,9 +76,27 @@ html {
     white-space: nowrap;
 }
 
+.slope-calc__rem-result {
+    display: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
 .slope-calc__input::placeholder {
     opacity: 0.8;
     font-size: smaller;
+}
+
+.slope-calc__rempx-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 40%;
+}
+
+.slope-calc__button-rempx {
+    flex-basis: 50%;
 }
 
 .slope-calc__copy {
