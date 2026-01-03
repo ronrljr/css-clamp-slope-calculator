@@ -11,6 +11,10 @@
     <main class="slope-calc-background-container">
         <section class="slope-calc">
             <h1 class="slope-calc__heading">Clamp Calculator</h1>
+            <div class="slope-calc__inplab-wrap">
+                <label class="slope-calc__label" for="root">Enter root px size (optional)</label>
+                <input class="slope-calc__input slope-calc__input--root" type="number" id="root" value="16"/>
+            </div>
              <div class="slope-calc__inplab-wrap">
                 <label class="slope-calc__label" for="min-width">Min px Width</label>
                 <input class="slope-calc__input" type="number" id="min-width" placeholder="Enter the minimum pixels"/>
@@ -30,6 +34,11 @@
             <button class="slope-calc__calculate">Generate Clamp</button>
             <div class="slope-calc__output">
                 <p class="slope-calc__result"></p>
+                <p class="slope-calc__rem-result"></p>
+            </div>
+            <div class="slope-calc__rempx-wrap">
+                <button class="slope-calc__button-rempx slope-calc__button-rempx--px">PX</button>
+                <button class="slope-calc__button-rempx slope-calc__button-rempx--rem">REM</button>
             </div>
             <button class="slope-calc__copy">Copy to clipboard</button>
         </section>
