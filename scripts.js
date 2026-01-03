@@ -1,30 +1,32 @@
 
 function generateClamp(minSize, maxSize, minViewport, maxViewport, output, outputRem, root) {
+  const outputs = [output, outputRem];
+
   if (
     isNaN(minSize) || isNaN(maxSize) ||
     isNaN(minViewport) || isNaN(maxViewport)
   ) {
-    output.textContent = "All fields must contain numbers.";
+    outputs.forEach(ele => ele.textContent = "All fields must contain numbers.");
     return;
   }
 
   if (minSize <= 0 || maxSize <= 0) {
-    output.textContent = "Font sizes must be greater than zero.";
+    outputs.forEach(ele => ele.textContent = "Font sizes must be greater than zero.");
     return;
   }
 
   if (minViewport <= 0 || maxViewport <= 0) {
-    output.textContent = "Viewport widths must be greater than zero.";
+    outputs.forEach(ele => ele.textContent = "Viewport widths must be greater than zero.");
     return;
   }
 
   if (minSize >= maxSize) {
-    output.textContent = "Min size must be smaller than max size.";
+    outputs.forEach(ele => ele.textContent = "Min size must be smaller than max size.");
     return;
   }
 
   if (minViewport >= maxViewport) {
-    output.textContent = "Min viewport must be smaller than max viewport.";
+    outputs.forEach(ele => ele.textContent = "Min viewport must be smaller than max viewport.");
     return;
   }
 
@@ -41,7 +43,6 @@ function generateClamp(minSize, maxSize, minViewport, maxViewport, output, outpu
   output.textContent = clampValue;
   outputRem.textContent = clampValueRem;
 }
-
 
 function calculateClamp() {
     const output = document.querySelector(".slope-calc__result");
@@ -88,3 +89,4 @@ function pxToRem() {
 }
 
 pxToRem();
+
