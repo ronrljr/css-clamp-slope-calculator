@@ -1,6 +1,5 @@
 
-function generateClamp(minSize, maxSize, minViewport, maxViewport, output) {
-  // Basic validation
+function generateClamp(minSize, maxSize, minViewport, maxViewport, output, outputRem, root) {
   if (
     isNaN(minSize) || isNaN(maxSize) ||
     isNaN(minViewport) || isNaN(maxViewport)
@@ -29,18 +28,24 @@ function generateClamp(minSize, maxSize, minViewport, maxViewport, output) {
     return;
   }
 
-  // Original calculation (unchanged)
   const slope = (maxSize - minSize) / (maxViewport - minViewport);
   const slopeVw = slope * 100;
   const base = minSize - slope * minViewport;
 
+  const minRem = (minSize / root).toFixed(4); 
+  const maxRem = (maxSize / root).toFixed(4); 
+  const baseRem = (base / root).toFixed(4);
+
   const clampValue = `clamp(${minSize}px, calc(${base.toFixed(4)}px + ${slopeVw.toFixed(4)}vw), ${maxSize}px);`;
+  const clampValueRem = `clamp(${minRem}rem, calc(${baseRem}rem + ${slopeVw.toFixed(4)}vw), ${maxRem}rem)`;
   output.textContent = clampValue;
+  outputRem.textContent = clampValueRem;
 }
 
 
 function calculateClamp() {
     const output = document.querySelector(".slope-calc__result");
+    const outputRem = document.querySelector(".slope-calc__rem-result");
     const calculate = document.querySelector(".slope-calc__calculate");
 
     calculate.addEventListener('click', function() {
@@ -48,19 +53,38 @@ function calculateClamp() {
         const maxSize = Number(document.getElementById("max-width").value);
         const minViewport = Number(document.getElementById("min-vp").value);
         const maxViewport = Number(document.getElementById("max-vp").value);
-        generateClamp(minSize, maxSize, minViewport, maxViewport, output)
-        navigator.clipboard.writeText(output.textContent);
+        const root = Number(document.getElementById("root").value);
+        generateClamp(minSize, maxSize, minViewport, maxViewport, output, outputRem, root);
+        // navigator.clipboard.writeText(output.textContent);
     });
 }
 
 calculateClamp();
 
-function copyToClipboard() {
+function pxToRem() {
+  const outputRem = document.querySelector(".slope-calc__rem-result");
+  const output = document.querySelector(".slope-calc__result");
+  const px = document.querySelector(".slope-calc__button-rempx--px");
+  const rem = document.querySelector(".slope-calc__button-rempx--rem");
   const copyButton = document.querySelector(".slope-calc__copy");
+  let pxRem = true;
 
-  copyButton.addEventListener('click', function() {
-    navigator.clipboard.writeText(output.textContent);
-  })
+  px.addEventListener('click', function() {
+    output.style.display = 'block';
+    outputRem.style.display = 'none';
+    pxRem = true;
+  });
+
+  rem.addEventListener('click', function() {
+    outputRem.style.display = 'block';
+    output.style.display = 'none';
+    pxRem = false;
+  });
+
+   copyButton.addEventListener('click', function() {
+    pxRem ? navigator.clipboard.writeText(output.textContent) : navigator.clipboard.writeText(outputRem.textContent);
+  }) 
+
 }
 
-copyToClipboard();
+pxToRem();
